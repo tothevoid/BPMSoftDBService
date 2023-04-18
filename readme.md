@@ -16,9 +16,9 @@
 
 ## Учётные записпи
 
-1. УЗ для восстановления бекапа serveradmin/admin - Задаётся в `initRoles.sql`
-2. creatioroot/root - Задаётся в `initRoles.sql`
-3. postgres/root - Задаётся в .ENV или `docker-compose.yml`
+1. УЗ для восстановления бекапа: serveradmin/admin - Задаётся в `initRoles.sql`
+2. УЗ для работы стенда: creatioroot/root - Задаётся в `initRoles.sql`
+3. Коренвая УЗ: postgres/root - Задаётся в .ENV или `docker-compose.yml`
 
 ## Переустановка бд
 1. docker-compose down --volumes
