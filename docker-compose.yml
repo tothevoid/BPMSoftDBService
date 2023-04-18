@@ -1,11 +1,12 @@
 version: "3"
 services:
   db:
+    container_name: pgsql_db
     image: postgres
     restart: unless-stopped
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: ${DB_ADMIN_LOGIN:-postgres}
+      POSTGRES_PASSWORD: ${DB_ADMIN_PASSWORD:-admin}
       PGDATA: /data/postgres
     ports:
       - 5432:5432
@@ -15,11 +16,11 @@ services:
       - ./ownerSwap.sql:/ownerSwap.sql
       - ./restore.sh:/docker-entrypoint-initdb.d/restore.sh
       - ./db.backup:/docker-entrypoint-initdb.d/db.backup
-      - postgres:/data/postgres
+      - ./postgres:/data/postgres
     networks:
       - postgres
   pgadmin:
-    container_name: pgadmin_container
+    container_name: pgadmin_web_app
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
